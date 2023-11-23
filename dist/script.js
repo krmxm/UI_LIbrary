@@ -1,33 +1,58 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/js/lib/core.js":
 /*!****************************!*\
   !*** ./src/js/lib/core.js ***!
   \****************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-(() => {
-  const $ = function (selector) {
-    const elements = document.querySelectorAll(selector);
-    const obj = {};
-    obj.hide = () => {
-      elements.forEach(elem => {
-        elem.style.display = 'none';
-      });
-      return obj;
-    };
-    obj.show = () => {
-      elements.forEach(elem => {
-        elem.style.display = '';
-      });
-      return obj;
-    };
-    console.log(obj);
-    return obj;
-  };
-  window.$ = $; // появляется глобальная функция
-})();
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// (() => {
+//     const $ = function (selector) {
+//         const elements = document.querySelectorAll(selector);
+//         const obj = {};
+
+//         obj.hide = () => {
+//             elements.forEach(elem => {
+//                 elem.style.display = 'none';
+//             });
+//             return obj;
+//         };
+
+//         obj.show = () => {
+//             elements.forEach(elem => {
+//                 elem.style.display = '';
+//             });
+//             return obj;
+//         };
+
+//         console.log(obj);
+//         return obj;
+//     };
+
+//     window.$ = $; // появляется глобальная функция
+// })();
+
+const $ = function (selector) {
+  return new $.prototype.init(selector);
+};
+$.prototype.init = function (selector) {
+  if (!selector) {
+    return this; // {}
+  }
+
+  Object.assing(this, document.querySelectorAll(selector));
+  this.length = document.querySelectorAll(selector).length;
+  return this;
+};
+$.prototype.init.prototype = $.prototype;
+window.$ = $;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ($);
 
 /***/ })
 
@@ -58,18 +83,6 @@
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -100,15 +113,13 @@
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!************************!*\
   !*** ./src/js/main.js ***!
   \************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/core */ "./src/js/lib/core.js");
-/* harmony import */ var _lib_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_lib_core__WEBPACK_IMPORTED_MODULE_0__);
 
 $('.active').hide().show();
 })();
