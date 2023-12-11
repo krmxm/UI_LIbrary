@@ -28,16 +28,20 @@ const $ = function (selector) {
     return new $.prototype.init(selector);
 };
 
-$.prototype.init = function (selector) {
-    if (!selector) {
+$.prototype.init = function(selector) {
+    if(!selector) {
         return this; // {}
     }
-    Object.assing(this, document.querySelectorAll(selector));
+    Object.assign(this, document.querySelectorAll(selector));
     this.length = document.querySelectorAll(selector).length;
     return this;
 };
 
 $.prototype.init.prototype = $.prototype;
+// мы в прототип объекта, который будет возвращаться, мы записываем прототип
+// нашей главной функции
+// теперь на объекте, который будет создаваться при помощью функции $
+// мы можем использовать любые методы, которые внутри прототипа главной фунции &
 
 window.$ = $;
 
