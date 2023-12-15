@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/js/lib/core.js":
@@ -7,7 +8,6 @@
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -72,24 +72,19 @@ window.$ = $;
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core */ "./src/js/lib/core.js");
 /* harmony import */ var _modules_display__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/display */ "./src/js/lib/modules/display.js");
-/* harmony import */ var _modules_display__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_display__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _modules_classes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/classes */ "./src/js/lib/modules/classes.js");
 /* harmony import */ var _modules_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/actions */ "./src/js/lib/modules/actions.js");
-/* harmony import */ var _modules_actions__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_modules_actions__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _modules_attributes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/attributes */ "./src/js/lib/modules/attributes.js");
+ // импорт функции
+ // испорт модуля, в котором создаются методы для функции
 
 
 
 
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_core__WEBPACK_IMPORTED_MODULE_0__["default"]);
+// export default $; // экспорт функции
 
 /***/ }),
 
@@ -97,11 +92,12 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************!*\
   !*** ./src/js/lib/modules/actions.js ***!
   \***************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// import $ from "../core";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
-$.prototype.on = function (eventName, callback) {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.on = function (eventName, callback) {
   if (!eventName || !callback) {
     return this;
   }
@@ -110,7 +106,7 @@ $.prototype.on = function (eventName, callback) {
   }
   return this;
 };
-$.prototype.off = function (eventName, callback) {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.off = function (eventName, callback) {
   if (!eventName || !callback) {
     return this;
   }
@@ -119,7 +115,7 @@ $.prototype.off = function (eventName, callback) {
   }
   return this;
 };
-$.prototype.click = function (handler) {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.click = function (handler) {
   for (let i = 0; i < this.length; i++) {
     if (handler) {
       this[i].addEventListener('click', handler);
@@ -138,7 +134,6 @@ $.prototype.click = function (handler) {
   \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
@@ -188,7 +183,6 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.getAttr = function (attr
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
@@ -217,11 +211,12 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.toggleClass = function (
 /*!***************************************!*\
   !*** ./src/js/lib/modules/display.js ***!
   \***************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// import $ from "../core";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
-$.prototype.show = function () {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.show = function () {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].style) {
       continue;
@@ -230,7 +225,7 @@ $.prototype.show = function () {
   }
   return this;
 };
-$.prototype.hide = function () {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.hide = function () {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].style) {
       continue;
@@ -239,7 +234,7 @@ $.prototype.hide = function () {
   }
   return this;
 };
-$.prototype.toggle = function () {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.toggle = function () {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].style) {
       continue;
@@ -282,18 +277,6 @@ $.prototype.toggle = function () {
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -324,9 +307,8 @@ $.prototype.toggle = function () {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!************************!*\
   !*** ./src/js/main.js ***!
   \************************/
