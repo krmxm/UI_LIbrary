@@ -33,7 +33,7 @@ $.prototype.init = function(selector) {
         return this; // {}
     }
 
-    if(selector.tagName) {
+    if(selector.tagName) { // если в аргумент добавляется HTML элемент
         this[0] = selector;
         this.length = 1;
         return this;
