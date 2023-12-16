@@ -1,7 +1,8 @@
 import $ from "./core"; // импорт функции
 import './modules/display'; // испорт модуля, в котором создаются методы для функции
 import './modules/classes';
-import './modules/actions';
+import './modules/handler';
 import './modules/attributes';
+import './modules/actions';
 
 // export default $; // экспорт функции
