@@ -4,5 +4,6 @@ import './modules/classes';
 import './modules/handler';
 import './modules/attributes';
 import './modules/actions';
+import './modules/effects';
 
 // export default $; // экспорт функции

@@ -80,8 +80,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_handler__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/handler */ "./src/js/lib/modules/handler.js");
 /* harmony import */ var _modules_attributes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/attributes */ "./src/js/lib/modules/attributes.js");
 /* harmony import */ var _modules_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/actions */ "./src/js/lib/modules/actions.js");
+/* harmony import */ var _modules_effects__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/effects */ "./src/js/lib/modules/effects.js");
  // импорт функции
  // испорт модуля, в котором создаются методы для функции
+
 
 
 
@@ -161,6 +163,54 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.find = function (selecto
       counter++;
     }
     numberOfItems += arr.length;
+  }
+  this.length = numberOfItems;
+  const objLength = Object.keys(this).length;
+  for (; numberOfItems < objLength; numberOfItems++) {
+    delete this[numberOfItems]; // 3 элемента из 5 подходят, 3 элмент имеет порядковый номер 2
+  }
+
+  return this;
+};
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.closest = function (selector) {
+  let counter = 0;
+  let length = this.length;
+  for (let i = 0; i < this.length; i++) {
+    if (!this[i].closest(selector)) {
+      continue;
+    } else {
+      this[i] = this[i].closest(selector);
+      counter++;
+    }
+  }
+  this.length = counter;
+
+  // this.length = length;
+
+  const objLength = Object.keys(this).length;
+  for (; counter < objLength; counter++) {
+    delete this[counter]; // 3 элемента из 5 подходят, 3 элмент имеет порядковый номер 2
+  }
+
+  return this;
+};
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.siblings = function () {
+  let numberOfItems = 0; // колическтво элементов, которые подошли по этому селектору
+  let counter = 0; // количество записанных элементов в обновлённый this 
+
+  const copyObj = Object.assign({}, this); // поверхностная копия объекта this
+
+  for (let i = 0; i < copyObj.length; i++) {
+    const arr = copyObj[i].parentNode.children; // это массив, состоящий из html элементов из объекта подходящих по селектору
+
+    for (let j = 0; j < arr.length; j++) {
+      if (copyObj[i] === arr[j]) {
+        continue;
+      }
+      this[counter] = arr[j];
+      counter++;
+    }
+    numberOfItems += arr.length - 1;
   }
   this.length = numberOfItems;
   const objLength = Object.keys(this).length;
@@ -295,6 +345,18 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.toggle = function () {
 
 /***/ }),
 
+/***/ "./src/js/lib/modules/effects.js":
+/*!***************************************!*\
+  !*** ./src/js/lib/modules/effects.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+
+/***/ }),
+
 /***/ "./src/js/lib/modules/handler.js":
 /*!***************************************!*\
   !*** ./src/js/lib/modules/handler.js ***!
@@ -408,9 +470,13 @@ $('button').on('click', function () {
 //         console.log($(this).index());
 // });
 
-console.log($('div').eq(2).find('.some'));
+// console.log($('div').eq(2).find('.some'));
 
 // console.log($('button').html('Hello'));
+
+// console.log($('.some').closest('.findme'));
+
+console.log($('.more').eq(0));
 })();
 
 /******/ })()

@@ -77,3 +77,58 @@ $.prototype.find = function(selector) {
 
     return this;
 };
+
+$.prototype.closest = function(selector) {
+    let counter = 0;
+    let length = this.length;
+
+    for(let i = 0; i < this.length; i++) {
+        if(!this[i].closest(selector)) {
+            continue;
+        } else {
+            this[i] = this[i].closest(selector);
+            counter++;
+        }
+    }
+    this.length = counter;
+
+    // this.length = length;
+
+    const objLength = Object.keys(this).length;
+    for(; counter < objLength; counter++) {
+        delete this[counter]; // 3 элемента из 5 подходят, 3 элмент имеет порядковый номер 2
+    }
+
+    return this;
+};
+
+$.prototype.siblings = function() {
+    let numberOfItems = 0; // колическтво элементов, которые подошли по этому селектору
+    let counter = 0; // количество записанных элементов в обновлённый this 
+
+    const copyObj = Object.assign({}, this); // поверхностная копия объекта this
+
+    for (let i = 0; i < copyObj.length; i++) {
+        const arr = copyObj[i].parentNode.children; // это массив, состоящий из html элементов из объекта подходящих по селектору
+
+        for (let j = 0; j < arr.length; j++) {
+            if(copyObj[i] === arr[j]) {
+                continue;
+            }
+
+            this[counter] = arr[j];
+            counter++;
+        }
+
+        numberOfItems += arr.length - 1;
+    }
+
+    this.length = numberOfItems;
+
+    const objLength = Object.keys(this).length;
+    for(; numberOfItems < objLength; numberOfItems++) {
+        delete this[numberOfItems]; // 3 элемента из 5 подходят, 3 элмент имеет порядковый номер 2
+    }
+
+    return this;
+};
