@@ -401,6 +401,28 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.fadeOut = function (dur,
   }
   return this;
 };
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.fadeToggle = function (dur, display, fin) {
+  for (let i = 0; i < this.length; i++) {
+    if (window.getComputedStyle(this[i]).display === 'none') {
+      this[i].style.display = display || 'block';
+      const _fadeIn = completion => {
+        this[i].style.opacity = completion;
+      };
+      const ani = this.animateOverTime(dur, _fadeIn, fin);
+      requestAnimationFrame(ani);
+    } else {
+      const _fadeOut = completion => {
+        this[i].style.opacity = 1 - completion;
+        if (completion === 1) {
+          this[i].style.display = 'none';
+        }
+      };
+      const ani = this.animateOverTime(dur, _fadeOut, fin);
+      requestAnimationFrame(ani);
+    }
+  }
+  return this;
+};
 
 /***/ }),
 
@@ -509,23 +531,15 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/lib */ "./src/js/lib/lib.js");
 
-$('button').on('click', function () {
-  $('div').eq(2).toggleClass('active');
+$('#first').on('click', function () {
+  $('div').eq(1).fadeToggle(800);
 });
-
-// $('div').click(function() {
-//         console.log($(this).index());
-// });
-
-// console.log($('div').eq(2).find('.some'));
-
-// console.log($('button').html('Hello'));
-
-// console.log($('.some').closest('.findme'));
-
-// console.log($('.more').eq(0));
-
-$('button').fadeIn(1800);
+$('[data-count="second"]').on('click', function () {
+  $('div').eq(2).fadeToggle(800);
+});
+$('button').eq(2).on('click', function () {
+  $('.w-500').fadeToggle(800);
+});
 })();
 
 /******/ })()
