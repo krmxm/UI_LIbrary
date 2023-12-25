@@ -46,6 +46,6 @@ $.prototype.getAttr = function(attributeName) {
         return this[i].getAttribute(attributeName);
     }
 
-    return this;
+    // return null;
 
 };
