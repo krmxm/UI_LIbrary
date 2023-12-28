@@ -11,6 +11,11 @@
   margin: 0px auto;
 }
 
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
+
 * {
   font-family: "Roboto", sans-serif;
 }
