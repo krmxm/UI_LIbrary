@@ -34,7 +34,7 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.dropdown = function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.modal = function () {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.modal = function (created) {
   for (let i = 0; i < this.length; i++) {
     const target = (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).getAttr('data-target');
     (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).click(e => {
@@ -42,20 +42,26 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.modal = function () {
       (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(target).fadeIn(500);
       document.body.style.overflow = 'hidden';
     });
-  }
-  const closeElements = document.querySelectorAll('[data-close]');
-  closeElements.forEach(elem => {
-    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(elem).click(() => {
-      (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])('.modal').fadeOut(500);
-      document.body.style.overflow = '';
+    const closeElements = document.querySelectorAll(`${target} [data-close]`);
+    closeElements.forEach(elem => {
+      (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(elem).click(() => {
+        (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])('target').fadeOut(500);
+        document.body.style.overflow = '';
+        if (created) {
+          document.querySelector(target).remove();
+        }
+      });
     });
-  });
-  (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])('.modal').click(e => {
-    if (e.target.classList.contains('modal')) {
-      (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])('.modal').fadeOut(500);
-      document.body.style.overflow = '';
-    }
-  });
+    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(target).click(e => {
+      if (e.target.classList.contains('modal')) {
+        (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])('target').fadeOut(500);
+        document.body.style.overflow = '';
+        if (created) {
+          document.querySelector(target).remove();
+        }
+      }
+    });
+  }
 };
 (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])('[data-toggle="modal"]').modal();
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.createModal = function ({
@@ -101,9 +107,9 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.createModal = function (
                 </div>
             </div>
         `;
-    modal.querySelector("modal-footer").append(...buttons);
+    modal.querySelector(".modal-footer").append(...buttons);
     document.body.appendChild(modal);
-    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).modal();
+    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).modal(true);
     (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i].getAttribute('data-target')).fadeIn(500);
   }
 };
@@ -644,15 +650,31 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/lib */ "./src/js/lib/lib.js");
 
-$('#first').on('click', function () {
-  $('div').eq(1).fadeToggle(800);
-});
-$('[data-count="second"]').on('click', function () {
-  $('div').eq(2).fadeToggle(800);
-});
-$('button').eq(2).on('click', function () {
-  $('.w-500').fadeToggle(800);
-});
+
+// $('#first').on('click', function() {
+//         $('div').eq(1).fadeToggle(800);
+// });
+
+// $('[data-count="second"]').on('click', function() {
+//         $('div').eq(2).fadeToggle(800);
+// });
+
+// $('button').eq(2).on('click', function() {
+//         $('.w-500').fadeToggle(800);
+// });
+
+$('#trigger').click(() => $('#trigger').createModal({
+  text: {
+    title: 'Modal title',
+    body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit cum modi, ad atque, voluptatibus unde culpa numquam assumenda enim dicta, minus eligendi mollitia reiciendis doloribus sapiente ut alias praesentium. Error.'
+  },
+  btns: {
+    count: 2,
+    settings: [['Close', ['btn-danger', 'mr-10'], true], ['Save Changes', ['btn-success'], false, () => {
+      alert('Данные сохранены');
+    }]]
+  }
+}));
 })();
 
 /******/ })()
